@@ -1,9 +1,16 @@
 {
   "name": "bun-user-api",
-  "module": "src/index.ts",
+  "version": "1.0.0",
+  "author": {
+    "name": "Lucas Saliés Brum",
+    "email": "paxa@paxa.dev",
+    "url": "https://paxa.dev"
+  },
+  "module": "src/api.ts",
   "type": "module",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "prod": "bun run src/api.ts",
+    "dev": "bun run --hot src/api.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.7.0",

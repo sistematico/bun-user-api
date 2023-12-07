@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import { PrismaClient } from '@prisma/client'
+import { userRouter } from '@/routes'
 
 const app = new Hono()
 const prisma = new PrismaClient()
@@ -24,16 +25,18 @@ async function main() {
   console.dir(allUsers, { depth: null })
 }
 
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+// main()
+//   .then(async () => {
+//     await prisma.$disconnect()
+//   })
+//   .catch(async (e) => {
+//     console.error(e)
+//     await prisma.$disconnect()
+//     process.exit(1)
+//   })
 
-app.get("/", (c) => c.text("Hello Hono!"))
+app.route('/user', userRouter)
 
-export default app
+app.get('/', (c) => c.text('Hello Hono!'))
+
+export default { port: 3004, fetch: app.fetch }
