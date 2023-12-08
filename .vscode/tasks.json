@@ -1,0 +1,44 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"command": "/home/lucas/.bun/bin/bun run --hot src/api.ts",			
+			"problemMatcher": [],
+			"label": "bun: dev",
+			"detail": "bun run --hot src/api.ts - package.json",
+			"runOptions": {
+				"runOn": "folderOpen"
+			},
+			"presentation": {
+				"echo": true,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+    {
+      "label": "Start Podman Container",
+      "type": "shell",
+      "command": "podman start userapi_postgres",
+			"presentation": {
+				"echo": true,
+				"reveal": "never",
+				"focus": false,
+				"panel": "shared",
+				"showReuseMessage": false,
+				"clear": true
+			},
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+	]
+}

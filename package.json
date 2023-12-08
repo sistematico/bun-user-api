@@ -10,7 +10,10 @@
   "type": "module",
   "scripts": {
     "prod": "bun run src/api.ts",
-    "dev": "bun run --hot src/api.ts"
+    "dev": "bun --watch run src/api.ts",
+    "reset": "bun x prisma migrate dev --name init && bun x prisma migrate reset",
+    "push": "bun x prisma db push --force-reset",
+    "gen": "bun x prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.7.0",

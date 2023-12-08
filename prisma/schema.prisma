@@ -7,6 +7,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id       Int      @id @default(autoincrement())
+  name     String?  @db.VarChar(255)
+  email    String   @unique @db.VarChar(255)
+  password String
+  tokens   Token[] // Refresh Tokens
+  profile  Profile?
+  posts    Post[]
+}
+
+model Token {
+  id        String   @id @unique @default(uuid())
+  token     String // Hashed Token
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  revoked   Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  userId Int     @unique
+  user   User    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
 model Post {
   id        Int      @id @default(autoincrement())
   title     String   @db.VarChar(255)
@@ -14,23 +41,5 @@ model Post {
   content   String?
   published Boolean  @default(false)
   authorId  Int
-  // User      User     @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   author    User     @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
-
-model Profile {
-  id     Int     @id @default(autoincrement())
-  bio    String?
-  userId Int     @unique
-  // User   User    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  user   User    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model User {
-  id      Int      @id @default(autoincrement())
-  name    String?  @db.VarChar(255)
-  email   String   @unique @db.VarChar(255)
-  profile Profile?
-  posts   Post[]
-}
-
