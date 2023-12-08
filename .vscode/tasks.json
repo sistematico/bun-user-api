@@ -2,11 +2,11 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "bun: dev",
+			"detail": "bun run --hot src/api.ts - package.json",
 			"type": "shell",
 			"command": "/home/lucas/.bun/bin/bun run --hot src/api.ts",			
 			"problemMatcher": [],
-			"label": "bun: dev",
-			"detail": "bun run --hot src/api.ts - package.json",
 			"runOptions": {
 				"runOn": "folderOpen"
 			},
@@ -24,7 +24,8 @@
 			}
 		},
     {
-      "label": "Start Podman Container",
+      "label": "Start Podman",
+			"detail": "podman start userapi_postgres",
       "type": "shell",
       "command": "podman start userapi_postgres",
 			"presentation": {
