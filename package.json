@@ -9,6 +9,7 @@
   "module": "src/api.ts",
   "type": "module",
   "scripts": {
+    "start": "bun run src/api.ts",
     "prod": "bun run src/api.ts",
     "dev": "bun --watch run src/api.ts",
     "reset": "bun x prisma migrate dev --name init && bun x prisma migrate reset",

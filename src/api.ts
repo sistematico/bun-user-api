@@ -3,8 +3,8 @@ import { userRouter, userNoAuthRouter } from '@/routes'
 
 const app = new Hono()
 
-app.route('/user', userRouter)
 app.route('/user', userNoAuthRouter)
+app.route('/user', userRouter)
 
 app.get('/', (c) => c.text('User API'))
 
